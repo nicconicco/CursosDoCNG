@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="gps_status">GPS_STATUS</string>
+    <string name="posicao_atual">POSICAO_ATUAL</string>
+    <string name="servico_ligado">SERVICO_LIGADO</string>
+    <string name="requisicao_ativa">REQUISICAO_ATIVA</string>
 </resources>

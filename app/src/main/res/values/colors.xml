@@ -2,4 +2,5 @@
 <resources>
     <color name="azul">#08298A</color>
     <color name="rosa">#FA5882</color>
+    <color name="branco">#FFFFFF</color>
 </resources>
