@@ -13,6 +13,8 @@ import java.util.List;
  * Created by mestre on 04/08/2015.
  */
 public abstract class CngApplication extends Application {
+
+    //Cria instancia do seu application
     private static CngApplication instance;
     private boolean startTick = false;
     private Handler handler = new Handler();

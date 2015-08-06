@@ -31,5 +31,7 @@ public class GpsActivity extends BaseActivity {
         // Ligar o servico
 //        Intent intent = new Intent(this, GpsService.class);
 //        startService(intent);
+
+//        getActivity().startService(intent);
     }
 }
