@@ -1,5 +1,6 @@
 package br.com.cursosdocng.cursosdocng.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,15 @@ public class BaseActivity extends FragmentActivity {
     public void showActivity(Context context, Class c) {
         Intent intent = new Intent(context, c);
         startActivity(intent);
+    }
+
+
+    protected Context getContext() {
+        return this.getActivity();
+    }
+
+    protected Activity getActivity() {
+        return this;
     }
 
 }

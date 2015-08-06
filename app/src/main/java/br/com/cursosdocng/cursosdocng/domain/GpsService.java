@@ -1,5 +1,6 @@
 package br.com.cursosdocng.cursosdocng.domain;
 
+import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 import android.location.Location;
@@ -15,7 +16,7 @@ import br.com.cursosdocng.cursosdocng.util.GooglePlayServicesHelper;
  * Created by mestre on 05/08/2015.
  */
 
-public class GpsService extends Service implements LocationListener {
+public class GpsService extends BaseService implements LocationListener {
 
     private static final String TAG = GpsService.class.getSimpleName();
     private static final String GPS_SERVICE = "GPS_SERVICE";
@@ -24,7 +25,6 @@ public class GpsService extends Service implements LocationListener {
 
     private boolean FAKE_MODE = false;
     private float distance;
-    private Gps gps;
 
     private String latitude;
     private String longitude;
@@ -36,6 +36,10 @@ public class GpsService extends Service implements LocationListener {
     Location locationB = new Location("point B");
 
     private final IBinder mBinder = new LocalBinder();
+
+    public GpsService(String name) {
+        super();
+    }
 
     public class LocalBinder extends Binder {
         public GpsService getService() {
@@ -52,9 +56,9 @@ public class GpsService extends Service implements LocationListener {
     }
 
     @Override
-    protected void execute(Intent intent) throws Exception {
+    protected void execute(Intent var1) throws Exception {
         googlePlayServicesHelper = new GooglePlayServicesHelper(getApplicationContext());
-        googlePlayServicesHelper.setLocationListeners(this);
+//        googlePlayServicesHelper.setLocationListeners(this);
         googlePlayServicesHelper.connect();
         mLastLocationMillis = SystemClock.elapsedRealtime();
         ativo = true;
@@ -62,28 +66,26 @@ public class GpsService extends Service implements LocationListener {
 
         while (ativo) {
 
-            if (true) {
-                try {
-                    if (getGpsLatitude() != null && getGpsLongitude() != null) {
-                        latitude = getGpsLatitude().replace(",", ".");
-                        longitude = getGpsLongitude().replace(",", ".");
-                        if (MondialService.SendVehiclePosition(login.login, codViatura, status, latitude, longitude)) {
-                            Log.v(TAG, "ok enviou posicao LAT:" + latitude + " - LONG:" + longitude);
-                        } else {
-                            Log.v(TAG, "ok enviou NAO posicao LAT:" + latitude + " - LONG:" + longitude);
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            if (true) {
+//                try {
+//                    if (getGpsLatitude() != null && getGpsLongitude() != null) {
+//                        latitude = getGpsLatitude().replace(",", ".");
+//                        longitude = getGpsLongitude().replace(",", ".");
+//                        if (MondialService.SendVehiclePosition(login.login, codViatura, status, latitude, longitude)) {
+//                        } else {
+//                        }
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
-        stopSelf();
+//        stopSelf();
     }
 
 
@@ -149,19 +151,11 @@ public class GpsService extends Service implements LocationListener {
 
     }
 
+
     private void sendBroadcast() {
-        gps = new Gps();
-        gps.setLatitude(latitude);
-        gps.setLongitude(longitude);
 
-        MondialApplication.getInstance().setGps(gps);
 
-        // Broadcast
-        Bundle b = new Bundle();
-        b.putSerializable(Gps.KEY, gps);
+//        BroadcastUtil.sendMessageToActivity(this, BroadcastUtil.ACTION_MESSAGE_GPS_TO_ACTIVITY, b);
 
-        BroadcastUtil.sendMessageToActivity(this, BroadcastUtil.ACTION_MESSAGE_GPS_TO_ACTIVITY, b);
-
-        Log.d("mondial", "GpsService.sendBroadcast bundle: " + gps);
     }
 }

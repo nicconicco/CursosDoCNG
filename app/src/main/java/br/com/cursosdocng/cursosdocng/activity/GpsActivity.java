@@ -1,9 +1,11 @@
 package br.com.cursosdocng.cursosdocng.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import br.com.cursosdocng.cursosdocng.R;
 import br.com.cursosdocng.cursosdocng.base.BaseActivity;
+import br.com.cursosdocng.cursosdocng.domain.GpsService;
 import br.com.cursosdocng.cursosdocng.fragment.GpsFragment;
 
 /**
@@ -24,5 +26,10 @@ public class GpsActivity extends BaseActivity {
             // Utiliza do suporte para fazer a transição
             getSupportFragmentManager().beginTransaction().replace(R.id.container, gpsFragment).commit();
         }
+
+
+        // Ligar o servico
+//        Intent intent = new Intent(this, GpsService.class);
+//        startService(intent);
     }
 }
