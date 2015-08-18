@@ -1,4 +1,4 @@
-package br.com.cursosdocng.cursosdocng.domain;
+package br.com.cursosdocng.cng.domain;
 
 import android.app.Service;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package br.com.cursosdocng.cursosdocng.util;
+package br.com.cursosdocng.cng.util;
 
 
 import android.content.Context;

@@ -7,4 +7,13 @@
     <string name="posicao_atual">POSICAO_ATUAL</string>
     <string name="servico_ligado">SERVICO_LIGADO</string>
     <string name="requisicao_ativa">REQUISICAO_ATIVA</string>
+    <string name="altera_status_servico">Alterar status serviço</string>
+    <string name="altera_requisicao">Alterar requisição</string>
+    <string name="msg_aguarde">Aguarde</string>
+    <string name="ok">ok</string>
+    <string name="msg_erro_rede_indisponivel">Rede indisponível</string>
+    <string name="msg_erro">ERRO</string>
+    <string name="msg_erro_sub">Erro de subtitulo</string>
+    <string name="verifique">Verifique a rede</string>
+    <string name="alterar_fragments">Alterar fragments</string>
 </resources>

@@ -1,16 +1,18 @@
-package br.com.cursosdocng.cursosdocng.domain;
+package br.com.cursosdocng.cng.domain;
 
-import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.util.Log;
 
-import br.com.cursosdocng.cursosdocng.util.GooglePlayServicesHelper;
+import com.google.android.gms.location.LocationListener;
+
+import br.com.cursosdocng.cng.util.BroadcastUtil;
+import br.com.cursosdocng.cng.util.GooglePlayServicesHelper;
+import br.com.cursosdocng.cng.CngApplication;
 
 /**
  * Created by mestre on 05/08/2015.
@@ -20,6 +22,8 @@ public class GpsService extends BaseService implements LocationListener {
 
     private static final String TAG = GpsService.class.getSimpleName();
     private static final String GPS_SERVICE = "GPS_SERVICE";
+//    private static final long TEMPO_DE_ESPERA = 5000;
+    private static final long TEMPO_DE_ESPERA = 50000;
 
     private GooglePlayServicesHelper googlePlayServicesHelper;
 
@@ -31,15 +35,13 @@ public class GpsService extends BaseService implements LocationListener {
     Object mLastLocation;
     private long mLastLocationMillis;
     private boolean ativo;
+    private Gps gps;
 
     Location locationA = new Location("point A");
     Location locationB = new Location("point B");
 
     private final IBinder mBinder = new LocalBinder();
 
-    public GpsService(String name) {
-        super();
-    }
 
     public class LocalBinder extends Binder {
         public GpsService getService() {
@@ -58,34 +60,35 @@ public class GpsService extends BaseService implements LocationListener {
     @Override
     protected void execute(Intent var1) throws Exception {
         googlePlayServicesHelper = new GooglePlayServicesHelper(getApplicationContext());
-//        googlePlayServicesHelper.setLocationListeners(this);
+        googlePlayServicesHelper.setLocationListeners(this);
         googlePlayServicesHelper.connect();
         mLastLocationMillis = SystemClock.elapsedRealtime();
         ativo = true;
-        String codViatura = "";
+
+        Log.d(TAG, "estartou servico");
 
         while (ativo) {
+            if (true) {
+                if (getGpsLatitude() != null && getGpsLongitude() != null) {
+                    latitude = getGpsLatitude().replace(",", ".");
+                    longitude = getGpsLongitude().replace(",", ".");
 
-//            if (true) {
-//                try {
-//                    if (getGpsLatitude() != null && getGpsLongitude() != null) {
-//                        latitude = getGpsLatitude().replace(",", ".");
-//                        longitude = getGpsLongitude().replace(",", ".");
-//                        if (MondialService.SendVehiclePosition(login.login, codViatura, status, latitude, longitude)) {
-//                        } else {
-//                        }
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+                    if (CngService.mandarPosicaoAtualParaWebServices(latitude, longitude)) {
+                        Log.d(TAG, "chamou: mandarPosicaoAtualParaWebServices");
+                    } else {
+                        // faz alguma coisa avisando
+                    }
+
+                    Log.d(TAG, "latitude: " + latitude + " / " + " longitude: " + longitude);
+                }
+            }
+            try {
+                Thread.sleep(TEMPO_DE_ESPERA);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-//        stopSelf();
+        stopSelf();
     }
 
 
@@ -124,38 +127,31 @@ public class GpsService extends BaseService implements LocationListener {
     public void onLocationChanged(Location location) {
         mLastLocation = location;
         mLastLocationMillis = SystemClock.elapsedRealtime();
-//
+
         //       latitude = "-23,6895484";
         //       longitude = "-46,3897377";
 
         latitude = String.valueOf(location.getLatitude());
         longitude = String.valueOf(location.getLongitude());
 
-//        Log.d("mondial","GpsService.onLocationChanged: " + String.format("lat/lng: %s/%s",latitude,longitude));
-
         sendBroadcast();
     }
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 
 
     private void sendBroadcast() {
 
+        gps = new Gps();
+        gps.setLatitude(latitude);
+        gps.setLongitude(longitude);
 
-//        BroadcastUtil.sendMessageToActivity(this, BroadcastUtil.ACTION_MESSAGE_GPS_TO_ACTIVITY, b);
+        CngApplication.getInstance().setGps(gps);
+
+        // Broadcast
+        Bundle b = new Bundle();
+        b.putSerializable(Gps.KEY, gps);
+
+        BroadcastUtil.sendMessageToActivity(this, BroadcastUtil.ACTION_MESSAGE_GPS_TO_ACTIVITY, b);
 
     }
 }

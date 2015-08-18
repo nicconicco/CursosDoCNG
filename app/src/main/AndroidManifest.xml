@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.cursosdocng.cursosdocng" >
+    package="br.com.cursosdocng.cng" >
 
 
     // Permissoes, depois veremos mapa
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- The following two permissions are not required to use
-        Google Maps Android API v2, but are recommended. -->
+         Google Maps Android API v2, but are recommended. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -23,8 +26,7 @@
         android:required="false" />
 
 
-    // Ligando o servico, porém sem boot
-    <service android:name=".domain.GpsService" android:exported="false"/>
+
 
     <application
         android:name=".CngApplication"
@@ -32,8 +34,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        // Ligando o servico, porém sem boot
+        <service android:name=".domain.GpsService" android:exported="false"/>
+
         <activity
-            android:name=".activity.StartActivity"
+            android:name="br.com.cursosdocng.cng.activity.StartActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,12 +50,12 @@
 
         // Lembre de sempre comentar no seu manifest
         <activity
-            android:name=".activity.ControleActivity"
+            android:name="br.com.cursosdocng.cng.activity.ControleActivity"
             android:launchMode= "singleInstance"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.GpsActivity"
+            android:name="br.com.cursosdocng.cng.activity.GpsActivity"
             android:launchMode= "singleInstance"
             android:screenOrientation="portrait" />
     </application>

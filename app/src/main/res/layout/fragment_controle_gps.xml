@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:background="@color/azul"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:background="@color/branco"
+            android:id="@+id/btnAlteraStatusServico"
+            android:textStyle="bold"
+            android:textColor="@color/azul"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="@string/altera_status_servico" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/btnDesligaRequisicao"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/branco"
+            android:layout_height="80dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="@string/altera_requisicao" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:background="@color/branco"
+            android:id="@+id/btnTrocarFragments"
+            android:textStyle="bold"
+            android:textColor="@color/azul"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="@string/alterar_fragments" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

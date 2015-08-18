@@ -1,31 +1,35 @@
-package br.com.cursosdocng.cursosdocng;
+package br.com.cursosdocng.cng;
 
 import android.app.Application;
-import android.content.Context;
-import android.os.Bundle;
+import android.content.Intent;
 import android.os.Handler;
+
+import com.google.android.gms.ads.doubleclick.AppEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by mestre on 04/08/2015.
- */
-public abstract class CngApplication extends Application {
+import br.com.cursosdocng.cng.domain.Gps;
 
-    //Cria instancia do seu application
-    private static CngApplication instance;
+/**
+ * Created by Carlos Nicolau Galves on 8/17/15.
+ */
+public abstract class CApp extends Application {
+
+    private static CApp instance;
     private boolean startTick = false;
     private Handler handler = new Handler();
     private Runnable timerRunnable;
-    private List<CngApplication.TickListener> listeners;
+    private List<CApp.TickListener> listeners;
     private long timeTick = -1L;
 
-    public CngApplication() {
+
+    public CApp() {
+        super();
     }
 
-    public static CngApplication getInstance() {
+    public static CApp getInstance() {
         if(instance == null) {
             throw new IllegalStateException("Faltou a classe [project]Application estendendo LivroAndroidApplication e android:name no Application do AndroidManifest.xml!");
         } else {
@@ -33,6 +37,7 @@ public abstract class CngApplication extends Application {
         }
     }
 
+    public abstract int getProgressId();
 
     public void onCreate() {
         super.onCreate();
@@ -64,16 +69,16 @@ public abstract class CngApplication extends Application {
     private Runnable getRunnable() {
         return new Runnable() {
             public void run() {
-                if(CngApplication.this.listeners != null) {
-                    Iterator var1 = CngApplication.this.listeners.iterator();
+                if(CApp.this.listeners != null) {
+                    Iterator var1 = CApp.this.listeners.iterator();
 
                     while(var1.hasNext()) {
                         CngApplication.TickListener tl = (CngApplication.TickListener)var1.next();
                         tl.tick();
                     }
 
-                    if(CngApplication.this.startTick & CngApplication.this.timeTick >= 0L) {
-                        CngApplication.this.scheduleTimer(CngApplication.this.timeTick);
+                    if(CApp.this.startTick & CApp.this.timeTick >= 0L) {
+                        CApp.this.scheduleTimer(CApp.this.timeTick);
                     }
                 }
 
@@ -81,11 +86,11 @@ public abstract class CngApplication extends Application {
         };
     }
 
-    public void addListener(CngApplication.TickListener listener) {
+    public void addListener(CApp.TickListener listener) {
         this.listeners.add(listener);
     }
 
-    public void removeListener(CngApplication.TickListener listener) {
+    public void removeListener(CApp.TickListener listener) {
         if(this.listeners != null) {
             this.listeners.remove(listener);
         }
@@ -99,13 +104,16 @@ public abstract class CngApplication extends Application {
 
     }
 
-    public interface AddTickListener {
-        void addTickListener(CngApplication.TickListener var1);
 
-        void removeTickListener(CngApplication.TickListener var1);
+    public interface AddTickListener {
+        void addTickListener(CApp.TickListener var1);
+
+        void removeTickListener(CApp.TickListener var1);
     }
 
     public interface TickListener {
         void tick();
     }
+
+
 }
