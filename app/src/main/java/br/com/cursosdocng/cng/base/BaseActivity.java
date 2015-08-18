@@ -68,7 +68,6 @@ public class BaseActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-
         // Sempre registrar e no onPause desregistrar o BroadCast
         registerReceiver(receiver1, new IntentFilter(BroadcastUtil.ACTION_WAKEUP_PROCURAR_SERVICO));
         registerReceiver(receiver2, new IntentFilter(BroadcastUtil.ACTION_MESSAGE_SERVICO_TO_ACTIVITY));
