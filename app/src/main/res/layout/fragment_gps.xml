@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <ScrollView
@@ -12,68 +12,122 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/rosa"
             android:orientation="vertical"
-            android:padding="@dimen/dim20dp"
-            android:background="@color/rosa">
+            android:padding="@dimen/dim20dp">
 
 
             <LinearLayout
-                android:layout_marginBottom="@dimen/dim20dp"
-                android:padding="@dimen/dim20dp"
-                android:background="@color/branco"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="@dimen/dim20dp"
+                android:background="@color/branco"
+                android:orientation="horizontal"
+                android:padding="@dimen/dim20dp">
 
-                <TextView
-                    android:id="@+id/tGpsStatus"
-                    android:textColor="@color/azul"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="@string/gps_status" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tPosicaoAtual"
-                    android:textColor="@color/branco"
-                    android:background="@color/azul"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/gps_status" />
+
+                    <TextView
+                        android:id="@+id/tGpsStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/gps_status"
+                        android:textColor="@color/azul"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="@string/posicao_atual" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/posicao_atual" />
+
+                    <TextView
+                        android:id="@+id/tPosicaoAtual"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/azul"
+                        android:gravity="center"
+                        android:text="@string/posicao_atual"
+                        android:textColor="@color/branco"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:padding="@dimen/dim20dp"
-                android:background="@color/branco"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="horizontal">
+                android:background="@color/branco"
+                android:orientation="horizontal"
+                android:padding="@dimen/dim20dp">
 
-                <TextView
-                    android:id="@+id/tStatusServico"
-                    android:textColor="@color/branco"
-                    android:background="@color/azul"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="@string/servico_ligado" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tRequisicoes"
-                    android:textColor="@color/azul"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/servico_ligado" />
+
+                    <TextView
+                        android:id="@+id/tStatusServico"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/azul"
+                        android:gravity="center"
+                        android:text="@string/servico_ligado"
+                        android:textColor="@color/branco"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="@string/requisicao_ativa" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/requisicao_ativa" />
+
+                    <TextView
+                        android:id="@+id/tRequisicoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/requisicao_ativa"
+                        android:textColor="@color/azul"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
