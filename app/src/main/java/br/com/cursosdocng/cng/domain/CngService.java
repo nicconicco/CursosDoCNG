@@ -1,7 +1,5 @@
 package br.com.cursosdocng.cng.domain;
 
-import br.com.cursosdocng.cursosdocng.domain.GpsObjetoDoMeuServico;
-
 /**
  * Created by Carlos Nicolau Galves on 8/10/15.
  */

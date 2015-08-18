@@ -1,4 +1,4 @@
-package br.com.cursosdocng.cursosdocng.domain;
+package br.com.cursosdocng.cng.domain;
 
 /**
  * Created by Carlos Nicolau Galves on 8/17/15.

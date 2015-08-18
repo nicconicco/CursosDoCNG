@@ -38,6 +38,18 @@ public class GpsFragment extends BaseFragment implements BaseActivity.MessageFro
         tStatusServico = (TextView) view.findViewById(R.id.tStatusServico);
         tRequisicoes = (TextView) view.findViewById(R.id.tRequisicoes);
 
+        if(Pref.getInteger(getBaseActivity(), Constantes.MARCOU_PROXIMO_AGENDAMENTO) == 1) {
+            preencheCampoRequisicao(true);
+        } else {
+            preencheCampoRequisicao(false);
+        }
+
+        if(Pref.getBoolean(getContext(), Constantes.LIGAR_SERVICO)) {
+            preencheCampoGps(true);
+        } else {
+            preencheCampoGps(false);
+        }
+
         boolean estado_servico = Pref.getBoolean(getContext(), Constantes.LIGAR_SERVICO);
 
 

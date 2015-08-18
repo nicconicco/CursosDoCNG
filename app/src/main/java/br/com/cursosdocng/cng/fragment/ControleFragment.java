@@ -62,7 +62,13 @@ public class ControleFragment extends BaseFragment {
                 } else {
 
                     Pref.setBoolean(getContext(), Constantes.LIGAR_SERVICO, false);
-                    getActivity().stopService(CngApplication.getInstance().getGpsIntent());
+
+                    Intent i = CngApplication.getInstance().getGpsIntent();
+
+                    if(i != null) {
+                        getActivity().stopService(i);
+                    }
+
                     Fragment frag = (Fragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.container);
                     mudaStatusGps(frag, false);
                 }

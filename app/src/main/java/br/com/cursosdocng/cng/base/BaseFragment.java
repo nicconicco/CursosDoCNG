@@ -2,11 +2,9 @@ package br.com.cursosdocng.cng.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -32,7 +30,7 @@ import br.com.cursosdocng.cng.util.BroadcastUtil;
 import br.com.cursosdocng.cng.util.Constantes;
 import br.com.cursosdocng.cng.util.Pref;
 import br.com.cursosdocng.cng.util.Task;
-import br.com.cursosdocng.cursosdocng.domain.GpsObjetoDoMeuServico;
+import br.com.cursosdocng.cng.domain.GpsObjetoDoMeuServico;
 
 /**
  * Created by mestre on 04/08/2015.
